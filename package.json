@@ -1,0 +1,21 @@
+{
+    "name": "unit_tests",
+    "version": "1.0.0",
+    "description": "https://ExIxIxS.github.io/",
+    "private": true,
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ExIxIxS/unit_tests.git"
+    },
+    "keywords": [],
+    "author": "ExIxIxS",
+    "license": "ISC",
+    "homepage": "",
+    "devDependencies": {
+        "jest": "29.3.0",
+        "lodash": "4.17.21"
+    }
+}
