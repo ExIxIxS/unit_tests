@@ -17,24 +17,7 @@
  * // => [['a', 'b', 'c'], ['d']]
  */
 
- function positiveSlice(arr, start = 0, end = arr.length) {
-  if (start > end) {
-    return [];
-  }
-
-  const length = arr.length;
-  const currentStart = (start < 0) ? 0 : start;
-  const currentEnd = (end > length) ? length : end;
-
-  const resultLength = currentEnd - currentStart;
-  resultArr = Array(resultLength);
-  for (let index = 0; index < resultLength; index++) {
-    const srcArrIndex = index + start;
-    resultArr[index] = arr[srcArrIndex];
-  }
-
-  return resultArr;
-}
+import positiveSlice from './_positiveSlice.js';
 
 function chunk(arr, size = 1) {
   if (!arr) {
@@ -65,4 +48,4 @@ function chunk(arr, size = 1) {
   return resultArr;
 }
 
-module.exports = chunk;
+export default chunk;

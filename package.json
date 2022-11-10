@@ -6,6 +6,11 @@
     "scripts": {
         "test": "jest"
     },
+    "jest": {
+        "transform": {
+            "^.+\\.js?$": "babel-jest"
+        }
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ExIxIxS/unit_tests.git"
@@ -15,6 +20,8 @@
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
+        "@babel/preset-env": "7.20.2",
+        "babel-jest": "29.3.1",
         "jest": "29.3.0",
         "lodash": "4.17.21"
     }

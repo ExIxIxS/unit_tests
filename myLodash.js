@@ -1,3 +1,9 @@
-const chunk = require('./src_js/chunk');
+import chunk from './src_js/chunk.js';
+import compact from './src_js/compact.js';
+import drop from './src_js/drop.js';
 
-module.exports = {chunk};
+export default {
+  chunk,
+  compact,
+  drop
+};
