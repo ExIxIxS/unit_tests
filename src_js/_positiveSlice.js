@@ -2,14 +2,17 @@
  * The base implementation of `slice` with positive start and end only.
  *
  * @private
- * @param {Array} array The array to slice.
+ * @param {Array} arr The array to slice.
  * @param {number} [start=0] The start position.
  * @param {number} [end=array.length] The end position.
  * @returns {Array} Returns the slice of `array`.
  */
 
 function positiveSlice(arr, start = 0, end = arr.length) {
-  if (start > end) {
+  if (!arr
+    ||start > end
+    || isNaN(start)
+    || isNaN(end)) {
     return [];
   }
 

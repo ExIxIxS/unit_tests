@@ -84,7 +84,7 @@ describe('chunk method', () => {
   })
 });
 
-describe('compact method', () => {
+describe('\ncompact method', () => {
   const testSet = [
     {
       arr: [1, 2, 3],
@@ -113,7 +113,101 @@ describe('compact method', () => {
   })
 });
 
-describe('drop method', () => {
+describe('\ndrop method', () => {
+  const testSet = [
+    {
+      arr: [1, 2, 3],
+      num: undefined
+    },
+    {
+      arr: [1, 2, 3],
+      num: 2
+    },
+    {
+      arr: [1, 2, 3],
+      num: 5
+    },
+    {
+      arr: [1, 2, 3],
+      num: 0
+    },
+    {
+      arr: 'string',
+      num: 2
+    },
+    {
+      arr: [1, 2, 3],
+      num: 2.5
+    },
+    {
+      arr: [1, 2, 3],
+      num: -5
+    },
+    {
+      arr: [1, 2, 3],
+      num: NaN
+    },
+    {
+      arr: 1234,
+      num: 1
+    },
+    {
+      arr: undefined,
+      num: undefined
+    },
+  ]
+
+  testSet.forEach((testObj) => {
+    const arr = testObj.arr;
+    const num = testObj.num;
+
+    test(`.drop() for "${arr}" and num -> "${num}"`, () => {
+    expect(_my.drop(arr, num)).toEqual(_.drop(arr, num));
+    });
+  })
+});
+
+/*
+describe('\ndropWhile method', () => {
+  const users = [
+    { 'user': 'barney',  'active': false },
+    { 'user': 'fred',    'active': false },
+    { 'user': 'pebbles', 'active': true },
+    { 'user': 'patrick', 'active': false },
+    { 'user': 'stiven', 'active': true }
+  ];
+
+  const testSet = [
+    {
+      arr: users,
+      predicate: function(o) { return !o.active; }
+    },
+    {
+      arr: users,
+      predicate: { 'user': 'barney', 'active': false }
+    },
+    {
+      arr: users,
+      predicate: ['active', false]
+    },
+    {
+      arr: users,
+      predicate: ['barney', 'fred', 'pebbles']
+    },
+  ]
+
+  testSet.forEach((testObj) => {
+    const arr = testObj.arr;
+    const predicate = testObj.predicate;
+
+    test(`.dropWhile() for predicate "${predicate}"`, () => {
+    expect(_my.dropWhile(arr, predicate)).toEqual(_.dropWhile(arr, predicate));
+    });
+  })
+});
+*/
+
+describe('\ntake method', () => {
   const testSet = [
     {
       arr: [1, 2, 3],
@@ -154,8 +248,11 @@ describe('drop method', () => {
   ]
 
   testSet.forEach((testObj) => {
-    test(`.drop() for "${testObj.arr}" and num -> "${testObj.num}"`, () => {
-    expect(_my.drop(testObj.arr)).toEqual(_.drop(testObj.arr));
+    const arr = testObj.arr;
+    const num = testObj.num;
+
+    test(`.take() for "${arr}" and num -> "${num}"`, () => {
+    expect(_my.take(arr, num)).toEqual(_.take(arr, num));
     });
   })
 });
