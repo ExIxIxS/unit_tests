@@ -1,5 +1,5 @@
 import * as _ from '../node_modules/lodash/lodash.js';
-import myLodash from '../myLodash.js';
+import _my from '../myLodash.js';
 
 describe('chunk method', () => {
   const testSet = [
@@ -79,7 +79,7 @@ describe('chunk method', () => {
 
   testSet.forEach((testObj) => {
     test(`from [${testObj.arr}] with chunk size = ${testObj.size}`, () => {
-    expect(myLodash.chunk(testObj.arr, testObj.size)).toEqual(_.chunk(testObj.arr, testObj.size));
+    expect(_my.chunk(testObj.arr, testObj.size)).toEqual(_.chunk(testObj.arr, testObj.size));
     });
   })
 });
@@ -108,7 +108,7 @@ describe('compact method', () => {
 
   testSet.forEach((testObj) => {
     test(`.compact() for "${typeof testObj.arr}" -> "${testObj.arr}"`, () => {
-    expect(myLodash.compact(testObj.arr)).toEqual(_.compact(testObj.arr));
+    expect(_my.compact(testObj.arr)).toEqual(_.compact(testObj.arr));
     });
   })
 });
@@ -155,7 +155,7 @@ describe('drop method', () => {
 
   testSet.forEach((testObj) => {
     test(`.drop() for "${testObj.arr}" and num -> "${testObj.num}"`, () => {
-    expect(myLodash.drop(testObj.arr)).toEqual(_.drop(testObj.arr));
+    expect(_my.drop(testObj.arr)).toEqual(_.drop(testObj.arr));
     });
   })
 });
