@@ -137,7 +137,15 @@ describe('\ndrop method', () => {
     },
     {
       arr: [1, 2, 3],
+      num: 2.2
+    },
+    {
+      arr: [1, 2, 3],
       num: 2.5
+    },
+    {
+      arr: [1, 2, 3],
+      num: 2.7
     },
     {
       arr: [1, 2, 3],
@@ -146,6 +154,10 @@ describe('\ndrop method', () => {
     {
       arr: [1, 2, 3],
       num: NaN
+    },
+    {
+      arr: [1, 2, 3],
+      num: 'string'
     },
     {
       arr: 1234,
@@ -226,6 +238,18 @@ describe('\ntake method', () => {
       num: 0
     },
     {
+      arr: [1, 2, 3],
+      num: 2.3
+    },
+    {
+      arr: [1, 2, 3],
+      num: 2.5
+    },
+    {
+      arr: [1, 2, 3],
+      num: 2.7
+    },
+    {
       arr: 'string',
       num: 2
     },
@@ -244,6 +268,10 @@ describe('\ntake method', () => {
     {
       arr: undefined,
       num: undefined
+    },
+    {
+      arr: [1, 2, 3],
+      num: 'string'
     },
   ]
 
