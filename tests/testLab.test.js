@@ -87,6 +87,9 @@ describe('chunk method', () => {
 describe('\ncompact method', () => {
   const testSet = [
     {
+      arr: [0, 1, false, '3', '', undefined, NaN, 7, null, 'false', 11, 'null'],
+    },
+    {
       arr: [1, 2, 3],
     },
     {
@@ -162,6 +165,10 @@ describe('\ndrop method', () => {
     {
       arr: 1234,
       num: 1
+    },
+    {
+      arr: {name: 'Stif', age: 17, isMale: false},
+      num: 2
     },
     {
       arr: undefined,
@@ -262,8 +269,16 @@ describe('\ntake method', () => {
       num: NaN
     },
     {
+      arr: NaN,
+      num: 2
+    },
+    {
       arr: 1234,
       num: 1
+    },
+    {
+      arr: {name: 'Stif', age: 17, isMale: false},
+      num: 2
     },
     {
       arr: undefined,
@@ -281,6 +296,265 @@ describe('\ntake method', () => {
 
     test(`.take() for "${arr}" and num -> "${num}"`, () => {
     expect(_my.take(arr, num)).toEqual(_.take(arr, num));
+    });
+  })
+});
+
+describe('\nincludes method', () => {
+  const testSet = [
+    {
+      coll: [1, 2, 3],
+      value: 1,
+      from: undefined
+    },
+    {
+      coll: [1, 2, 3],
+      value: 1,
+      from: 2
+    },
+    {
+      coll: [1, 2, 3, 4, 5],
+      value: 1,
+      from: 1.7
+    },
+    {
+      coll: [1, 2, 3, 4, 5],
+      value: 3,
+      from: 1.7
+    },
+    {
+      coll: [1, 2, 3, 4, 5],
+      value: 4,
+      from: 10
+    },
+    {
+      coll: [1, 2, 3, 4, 5],
+      value: 4,
+      from: -10
+    },
+    {
+      coll: [1, 2, 3, 4, 5],
+      value: 4,
+      from: Infinity
+    },
+    {
+      coll: {a: 1, b: 2},
+      value: 1,
+      from: undefined
+    },
+    {
+      coll: {a: 1, b: 2, c: 3},
+      value: 1,
+      from: 1
+    },
+    {
+      coll: 'string',
+      value: 'trin',
+      from: undefined
+    },
+    {
+      coll: 213,
+      value: 1,
+      from: undefined
+    },
+    {
+      coll: 'string',
+      value: NaN,
+      from: undefined
+    },
+    {
+      coll: 'string',
+      value: 'trin',
+      from: 3
+    },
+    {
+      coll: 'string',
+      value: 'in',
+      from: 3
+    },
+    {
+      coll: 'string',
+      value: undefined,
+      from: undefined
+    },
+    {
+      coll: undefined,
+      value: undefined,
+      from: undefined
+    },
+  ]
+
+  testSet.forEach((testObj) => {
+    const coll = testObj.coll;
+    const value = testObj.value;
+    const from = testObj.from;
+
+    test(`.includes() for "${coll}", value -> "${value}", from index -> "${from}"`, () => {
+    expect(_my.includes(coll, value, from)).toEqual(_.includes(coll, value, from));
+    });
+  })
+});
+
+describe('\nzip method', () => {
+  const testSet = [
+    {
+      arr: [['a', 'b'], [1, 2], [true, false]],
+    },
+    {
+      arr: [['a', 'b', 'c'], [1, 2], [true, false]],
+    },
+    {
+      arr: [['a', 'b', 'c'], [1, 2, 3, 4, 5], [true, false]],
+    },
+    {
+      arr: [['a', 'b', 'c']],
+    },
+    {
+      arr: ['string', [1, 2], [true, false]],
+    },
+    {
+      arr: ['string', [1, 2], 3, [true, false], ['string', 'string', 'string']],
+    },
+    {
+      arr: ['string'],
+    },
+    {
+      arr: [123],
+    },
+    {
+      arr: [],
+    },
+    {
+      arr: [NaN],
+    },
+    {
+      arr: [{a: 1, b: 2, c: 3}],
+    },
+    {
+      arr: [undefined],
+    },
+  ]
+
+  testSet.forEach((testObj) => {
+    const arr = testObj.arr;
+
+    test(`.zip() for [${arr}]`, () => {
+    expect(_my.zip(...arr)).toEqual(_.zip(...arr));
+    });
+  })
+});
+
+describe('\nmap method', () => {
+  const testFunc = (n) => n * n;
+
+  const testSet = [
+    {
+      coll: [4, 8, 3],
+      fn: testFunc
+    },
+    {
+      coll: { 'a': 4, 'b': 8 },
+      fn: testFunc
+    },
+    {
+      coll: { 'a': 4, 'b': 8, 'c': 'string' },
+      fn: testFunc
+    },
+    {
+      coll: [
+        { 'user': 'barney' },
+        { 'user': 'fred' }
+      ],
+      fn: 'user'
+    },
+    {
+      coll: [
+        { 1: 'one' },
+        { '1': 'one' },
+        { 'user': 'fred' }
+      ],
+      fn: 1
+    },
+    {
+      coll: [
+        { 'user': 'barney', age: 17 },
+        { 'isMale': true },
+        { 'admin': 'barney', age: 17 },
+        14,
+        'string',
+        undefined
+      ],
+      fn: 'user'
+    },
+    {
+      coll: undefined,
+      fn: undefined
+    },
+    {
+      coll: [4, 8, 3],
+      fn: undefined
+    },
+    {
+      coll: undefined,
+      fn: testFunc
+    },
+    {
+      coll: null,
+      fn: testFunc
+    },
+    {
+      coll: null,
+      fn: 'user'
+    },
+    {
+      coll: [
+        { 'user': 'barney' },
+        10,
+        { 'user': 'fred' }
+      ],
+      fn: testFunc
+    },
+    {
+      coll: { 'a': 4, 'b': 8 },
+      fn: 3
+    },
+    {
+      coll: 'string',
+      fn: (char) => char + char
+    },
+    {
+      coll: 3,
+      fn: testFunc
+    },
+    {
+      coll: { 0: 0, 1: 1, 2: 2, length: 3 },
+      fn: testFunc
+    },
+
+    {
+      coll: { name: 'Stif', age: 17, 2: 2, length: 3 },
+      fn: testFunc
+    },
+    {
+      coll: { name: 'Stif', age: 17, 2: 2, length: 3 },
+      fn: 'length'
+    },
+    {
+      coll: [1, 2, 3, 4],
+      fn: 'length'
+    },
+    {
+      coll: { 'a': 4, 'b': 8, 6: 'John' },
+      fn: testFunc
+    },
+  ]
+
+  testSet.forEach((testObj) => {
+    const coll = testObj.coll;
+    const fn = testObj.fn;
+
+    test(`.map() for ${coll}`, () => {
+    expect(_my.map(coll, fn)).toEqual(_.map(coll, fn));
     });
   })
 });

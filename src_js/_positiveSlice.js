@@ -10,20 +10,20 @@
 
 function positiveSlice(arr, start = 0, end = arr.length) {
   if (!arr
-    ||start > end
+    || start > end
     || isNaN(start)
     || isNaN(end)) {
     return [];
   }
 
   const length = arr.length;
-  const currentStart = (start < 0) ? 0 : start;
-  const currentEnd = (end > length) ? length : end;
+  const currentStart = (start < 0) ? 0 : Math.floor(start);
+  const currentEnd = (end >= length) ? length : Math.floor(end);
 
   const resultLength = currentEnd - currentStart;
   const resultArr = Array(resultLength);
   for (let index = 0; index < resultLength; index++) {
-    const srcArrIndex = index + start;
+    const srcArrIndex = index + currentStart;
     resultArr[index] = arr[srcArrIndex];
   }
 
