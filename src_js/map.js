@@ -48,7 +48,7 @@ function map(coll, fn) {
       if (typeof item === 'object') {
         return item[fn];
       }
-      })
+    })
   }
 
 }
