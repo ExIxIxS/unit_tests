@@ -1,4 +1,4 @@
-import positiveSlice from './_positiveSlice.js';
+import slice from './_slice.js';
 
 /**
  * Creates a slice of `array` with `n` elements taken from the beginning.
@@ -28,7 +28,7 @@ function take(arr, n = 1) {
   }
 
   const sliceEnd = (n < arr.length) ? Math.floor(n) : arr.length;
-  return positiveSlice(arr, 0, sliceEnd);
+  return slice(arr, 0, sliceEnd);
 }
 
 export default take;

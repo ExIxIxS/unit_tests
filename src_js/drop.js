@@ -1,4 +1,4 @@
-import positiveSlice from './_positiveSlice.js';
+import slice from './_slice.js';
 
 /**
  * Creates a slice of `array` with `n` elements dropped from the beginning.
@@ -30,7 +30,7 @@ function drop(arr, n = 1) {
 
   const sliceStart = (n > 0 && !isNaN(n)) ? Math.floor(n) : 0;
 
-  return positiveSlice(arr, sliceStart);
+  return slice(arr, sliceStart);
 }
 
 export default drop;

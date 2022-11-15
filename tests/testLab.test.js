@@ -97,41 +97,64 @@ describe('\nmap method', () => {
   })
 });
 
+describe('\nfilter method', () => {
+  const methodName = 'filter';
+
+  testSets[methodName].forEach((testObj) => {
+    const coll = testObj.coll;
+    const fn = testObj.fn;
+
+    test(`.${methodName}() for ${coll}
+      fn -> ${fn}`, () => {
+    expect(_my[methodName](coll, fn)).toEqual(_[methodName](coll, fn));
+    });
+  })
+});
+
+describe('\nslice method', () => {
+  const methodName = 'slice';
+
+  testSets[methodName].forEach((testObj) => {
+    const arr = testObj.arr;
+    const start = testObj.start;
+    const end = testObj.end;
+
+    test(`.${methodName}() for ${arr}
+      start -> ${start}
+      end -> ${end}`, () => {
+    expect(_my[methodName](arr, start, end)).toEqual(_[methodName](arr, start, end));
+    });
+  })
+});
+
+/*
+describe('\nfind method', () => {
+  const methodName = 'find';
+
+  testSets[methodName].forEach((testObj) => {
+    const coll = testObj.coll;
+    const fn = testObj.fn;
+    const fromIndex = testObj.fromIndex;
+
+    test(`.${methodName}() for ${coll}
+      predicate -> ${fn}
+      fromIndex -> ${fromIndex}`, () => {
+    expect(_my[methodName](coll, fn, fromIndex)).toEqual(_[methodName](coll, fn, fromIndex));
+    });
+  })
+});
+*/
+
 /*
 describe('\ndropWhile method', () => {
-  const users = [
-    { 'user': 'barney',  'active': false },
-    { 'user': 'fred',    'active': false },
-    { 'user': 'pebbles', 'active': true },
-    { 'user': 'patrick', 'active': false },
-    { 'user': 'stiven', 'active': true }
-  ];
+  const methodName = 'dropWhile';
 
-  const testSet = [
-    {
-      arr: users,
-      predicate: function(o) { return !o.active; }
-    },
-    {
-      arr: users,
-      predicate: { 'user': 'barney', 'active': false }
-    },
-    {
-      arr: users,
-      predicate: ['active', false]
-    },
-    {
-      arr: users,
-      predicate: ['barney', 'fred', 'pebbles']
-    },
-  ]
-
-  testSet.forEach((testObj) => {
+  testSets[methodName].forEach((testObj) => {
     const arr = testObj.arr;
     const predicate = testObj.predicate;
 
-    test(`.dropWhile() for predicate "${predicate}"`, () => {
-    expect(_my.dropWhile(arr, predicate)).toEqual(_.dropWhile(arr, predicate));
+    test(`.${methodName}() for predicate "${predicate}"`, () => {
+    expect(_my[methodName](arr, predicate)).toEqual(_[methodName](arr, predicate));
     });
   })
 });

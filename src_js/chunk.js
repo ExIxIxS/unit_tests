@@ -1,4 +1,4 @@
-import positiveSlice from './_positiveSlice.js';
+import slice from './_slice.js';
 
 /**
  * Creates an array of elements split into groups the length of `size`.
@@ -41,7 +41,7 @@ function chunk(arr, size = 1) {
 
   for (let index = 0; index < resultLength; index++) {
     const sliceEnd = sliceStart + chunkSize
-    resultArr[index] = positiveSlice(arr, sliceStart, sliceEnd);
+    resultArr[index] = slice(arr, sliceStart, sliceEnd);
     sliceStart = sliceEnd;
   }
 

@@ -6,6 +6,9 @@ import take from './src_js/take.js';
 import includes from './src_js/includes.js';
 import zip from './src_js/zip.js';
 import map from './src_js/map.js';
+import filter from './src_js/filter.js';
+import find from './src_js/find.js';
+import slice from './src_js/_slice.js';
 
 export default {
   chunk,
@@ -15,5 +18,8 @@ export default {
   take,
   includes,
   zip,
-  map
+  map,
+  filter,
+  find,
+  slice
 };

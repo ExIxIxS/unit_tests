@@ -1,5 +1,5 @@
 /**
- * The base implementation of `slice` with positive start and end only.
+ * The base implementation of `slice`.
  *
  * @private
  * @param {Array} arr The array to slice.
@@ -8,7 +8,7 @@
  * @returns {Array} Returns the slice of `array`.
  */
 
-function positiveSlice(arr, start = 0, end = arr.length) {
+function slice(arr, start = 0, end = arr.length) {
   if (!arr
     || start > end
     || isNaN(start)
@@ -22,6 +22,7 @@ function positiveSlice(arr, start = 0, end = arr.length) {
 
   const resultLength = currentEnd - currentStart;
   const resultArr = Array(resultLength);
+
   for (let index = 0; index < resultLength; index++) {
     const srcArrIndex = index + currentStart;
     resultArr[index] = arr[srcArrIndex];
@@ -30,4 +31,4 @@ function positiveSlice(arr, start = 0, end = arr.length) {
   return resultArr;
 }
 
-export default positiveSlice;
+export default slice;

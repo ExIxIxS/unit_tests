@@ -1,15 +1,17 @@
 import forEach from './_forEach.js';
 
 /**
- * The implementation of array filter.
+ * Iterates over elements of array, returning the first element
+ * `predicate` returns truthy for. The predicate is invoked with three
+ * arguments: (value, index|key, collection)
  *
  * @private
- * @param {Array} arr The array to filter.
- * @param {(item, index, arr) => boolean} fn Filter function.
- * @returns {Array} Returns the filtered array.
+ * @param {Array} arr The array to find.
+ * @param {(item, index, arr) => boolean} fn Predicate function or shorthand.
+ * @returns {any} Returns the first element predicate returns truthy for.
  */
 
-function filterArr(arr, fn) {
+function findArr(arr, fn) {
   if (!Array.isArray(arr)) {
     return [];
   }
@@ -38,4 +40,4 @@ function filterArr(arr, fn) {
   return resultArr;
 }
 
-export default filterArr;
+export default findArr;

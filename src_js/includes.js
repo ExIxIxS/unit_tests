@@ -1,5 +1,5 @@
 import forEach from './_forEach.js';
-import positiveSlice from './_positiveSlice.js';
+import slice from './_slice.js';
 
 /**
  * Checks if `value` is in `collection`. If `collection` is a string, it's
@@ -38,7 +38,7 @@ function includes(coll, value, fromIndex = 0) {
   }
 
   const arr = (Array.isArray(coll)) ? coll : Object.values(coll);
-  const slicedArr = positiveSlice(arr, fromIndex);
+  const slicedArr = slice(arr, fromIndex);
 
   forEach(slicedArr, (item) => {
     if (item === value) {

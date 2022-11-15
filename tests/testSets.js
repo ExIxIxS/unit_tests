@@ -248,6 +248,16 @@ const includes = [
   {
     coll: [1, 2, 3, 4, 5],
     value: 4,
+    from: -1
+  },
+  {
+    coll: [1, 2, 3, 4, 5],
+    value: 4,
+    from: -3
+  },
+  {
+    coll: [1, 2, 3, 4, 5],
+    value: 4,
     from: -10
   },
   {
@@ -444,6 +454,271 @@ const map = [
   },
 ]
 
+const filterUsers = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': false, 'props': ['array', 'of', ['arrays']] },
+]
+
+const filter = [
+  {
+    coll: filterUsers,
+    fn: function(o) { return !o.active; }
+  },
+  {
+    coll: filterUsers,
+    fn: { 'age': 36, 'active': true }
+  },
+  {
+    coll: filterUsers,
+    fn: { 'age': 40 }
+  },
+  {
+    coll: filterUsers,
+    fn: { 'age': 36, 'user': 'Monika' }
+  },
+  {
+    coll: filterUsers,
+    fn: ['active', false]
+  },
+  {
+    coll: filterUsers,
+    fn: 'active'
+  },
+  {
+    coll: filterUsers,
+    fn: { 'age': 36, 'active': true, name: 'Stif' }
+  },
+  {
+    coll: filterUsers,
+    fn: ['active', false, 'age', 36]
+  },
+  {
+    coll: filterUsers,
+    fn: 'age'
+  },
+  {
+    coll: filterUsers,
+    fn: 'age'
+  },
+  {
+    coll: filterUsers,
+    fn: undefined
+  },
+  {
+    coll: undefined,
+    fn: undefined
+  },
+  {
+    coll: 'string',
+    fn: (char) => char === 'r'
+  },
+  {
+    coll: 10,
+    fn: (num) => num === 10
+  },
+  {
+    coll: {a: 2, b: 3, c: 'string'},
+    fn: (item) => item.length > 2
+  },
+  {
+    coll: filterUsers,
+    fn: ['age', 36, 'active', false, ]
+  },
+  {
+    coll: filterUsers,
+    fn: { 'user': 'fred',   'age': 40, 'active': false, 'props': ['array', 'of', ['arrays']] }
+  },
+  {
+    coll: filterUsers,
+    fn: { 'user': 'fred',   'age': 40, 'active': false, 'props': ['wrong array'] }
+  },
+  {
+    coll: filterUsers,
+    fn: ['props', ['array', 'of', ['arrays']]]
+  },
+  {
+    coll: filterUsers,
+    fn: { 'user': 'fred',   'age': 40, 'active': false, isMale: true }
+  },
+  {
+    coll: [
+      {'10': 'Ten'}
+    ],
+    fn: 10
+  },
+]
+
+const findUsers = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true },
+]
+
+const find = [
+  {
+    coll: findUsers,
+    fn: function(o) { return o.age < 40; }
+  },
+  {
+    coll: findUsers,
+    fn: { 'age': 1, 'active': true }
+  },
+  {
+    coll: findUsers,
+    fn: ['active', false]
+  },
+  {
+    coll: findUsers,
+    fn: 'active'
+  },
+  {
+    coll: findUsers,
+    fn: function(o) { return o.age < 40; },
+    fromIndex: 1
+  },
+  {
+    coll: 10,
+    fn: undefined
+  },
+  {
+    coll: [10, 20, 30, 40, 50],
+    fn: (item) => item < 10
+  },
+  {
+    coll: [10, 20, 30, 40, 50],
+    fn: (item) => item > 10
+  },
+  {
+    coll: [10, 20, 30, 40, 50],
+    fn: (item) => item > 10,
+    fromIndex: 2
+  },
+  {
+    coll: 'string',
+    fn: (item) => item === 'i'
+  },
+  {
+    coll: 'string',
+    fn: (item) => item === 'i',
+    fromIndex: -4
+  },
+  {
+    coll: undefined,
+    fn: (item) => item === 'i',
+    fromIndex: -4
+  },
+  {
+    coll: findUsers,
+    fn: undefined,
+    fromIndex: -4
+  },
+  {
+    coll: 'string',
+    fn: (item) => item === 'i',
+    fromIndex: 20
+  },
+  {
+    coll: 'string',
+    fn: (item) => item === 'i',
+    fromIndex: -20
+  },
+  {
+    coll: 10,
+    fn: (item) => item <= 10
+  },
+  {
+    coll: { 'a': 1, 'b': 2, 'c': 3, 'd': 4 },
+    fn: (item) => item > 2
+  },
+  {
+    coll: { 'a': 1, 'b': 2, 'c': 3, 'd': 4 },
+    fn: (item) => item > 2,
+    fromIndex: 3
+  },
+]
+
+const dropWhileUsers = [
+  { 'user': 'barney',  'active': false },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': true },
+  { 'user': 'patrick', 'active': false },
+  { 'user': 'stiven', 'active': true }
+];
+
+const dropWhile = [
+  {
+    arr: dropWhileUsers,
+    predicate: function(o) { return !o.active; }
+  },
+  {
+    arr: dropWhileUsers,
+    predicate: { 'user': 'barney', 'active': false }
+  },
+  {
+    arr: dropWhileUsers,
+    predicate: ['active', false]
+  },
+  {
+    arr: dropWhileUsers,
+    predicate: ['barney', 'fred', 'pebbles']
+  },
+]
+
+const slice = [
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 0,
+    end: 5
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 2,
+    end: 5
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 5,
+    end: 5
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: null,
+    end: 5
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 3,
+    end: 1
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: -3,
+    end: undefined
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: -3,
+    end: -5
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 0,
+    end: -2
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 0,
+    end: -6
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: -5,
+    end: 3
+  },
+]
+
+
 export default {
   chunk,
   compact,
@@ -452,4 +727,8 @@ export default {
   includes,
   zip,
   map,
+  filter,
+  find,
+  dropWhile,
+  slice
 }
