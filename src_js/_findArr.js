@@ -1,4 +1,4 @@
-import forEach from './_forEach.js';
+import slice from './_slice.js';
 
 /**
  * Iterates over elements of array, returning the first element
@@ -7,37 +7,27 @@ import forEach from './_forEach.js';
  *
  * @private
  * @param {Array} arr The array to find.
- * @param {(item, index, arr) => boolean} fn Predicate function or shorthand.
+ * @param {(item, index, arr) => boolean} fn The predicate function.
+ *  @param {number} [fromIndex=0] The index to search from.
  * @returns {any} Returns the first element predicate returns truthy for.
  */
 
-function findArr(arr, fn) {
-  if (!Array.isArray(arr)) {
-    return [];
+function findArr(arr, fn, fromIndex = 0) {
+  const isArray = Array.isArray(arr);
+  if (isArray && fn) {
+    const currentArr = (fromIndex) ? slice(arr, fromIndex) : arr;
+    let index = 0;
+    for (const item of currentArr) {
+      if (fn(item, index, currentArr)) {
+        return item;
+      }
+      index++;
+    }
   }
 
-  if (!fn) {
-    return arr;
+  if (isArray && !fn) {
+    return slice(arr, fromIndex)[0];
   }
-
-  let resultLength = 0;
-  forEach(arr, (item, index, arr) => {
-    if (fn(item, index, arr)) {
-      resultLength++;
-    }
-  });
-
-  const resultArr = Array(resultLength);
-  let resArrIndex = 0;
-
-  forEach(arr, (item, index, arr) => {
-    if (fn(item, index, arr)) {
-      resultArr[resArrIndex] = item;
-      resArrIndex++;
-    }
-  });
-
-  return resultArr;
 }
 
 export default findArr;

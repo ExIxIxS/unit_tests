@@ -1,8 +1,8 @@
 import filterArr from './_filterArr.js';
 import isIterable from './_isIterable.js';
 import arrayFrom from './_arrayFrom.js';
+import slice from './_slice.js';
 import includesEntries from './_includesEntries.js';
-import positiveSlice from './_slice.js';
 import includesEntry from './_includesEntry.js';
 import includesTruthyEntry from './_includesTruthyEntry.js';
 
@@ -58,7 +58,7 @@ function filter(coll, fn) {
       return filterArr(arr, (item) => includesEntries(item, fn));
       }
       case 'array': {
-        const [key, value] = positiveSlice(fn, 0, 2);
+        const [key, value] = slice(fn, 0, 2);
         return filterArr(arr, (item) => includesEntry(item, key, value));
       }
       default:{

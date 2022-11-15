@@ -127,7 +127,7 @@ describe('\nslice method', () => {
   })
 });
 
-/*
+
 describe('\nfind method', () => {
   const methodName = 'find';
 
@@ -143,7 +143,7 @@ describe('\nfind method', () => {
     });
   })
 });
-*/
+
 
 /*
 describe('\ndropWhile method', () => {

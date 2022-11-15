@@ -10,15 +10,29 @@
 
 function slice(arr, start = 0, end = arr.length) {
   if (!arr
-    || start > end
     || isNaN(start)
     || isNaN(end)) {
     return [];
   }
 
   const length = arr.length;
-  const currentStart = (start < 0) ? 0 : Math.floor(start);
-  const currentEnd = (end >= length) ? length : Math.floor(end);
+  let currentStart = Math.floor(start);
+  if (currentStart < 0) {
+    currentStart = (-currentStart < length) ? currentStart += length : 0;
+  } else {
+    currentStart = (currentStart < length) ? currentStart : length;
+  }
+
+  let currentEnd = Math.ceil(end);
+  if (currentEnd < 0 && (-currentEnd <= length)) {
+    currentEnd += length;
+  } else {
+    currentEnd = (currentEnd < length) ? currentEnd : length;
+  }
+
+  if (currentStart > currentEnd) {
+    return [];
+  }
 
   const resultLength = currentEnd - currentStart;
   const resultArr = Array(resultLength);

@@ -23,11 +23,16 @@ import slice from './_slice.js';
  * // => []
  */
 function take(arr, n = 1) {
-  if (!arr || isNaN(n)) {
+  if (!arr
+      || isNaN(n)
+      || n === 0) {
     return [];
   }
 
-  const sliceEnd = (n < arr.length) ? Math.floor(n) : arr.length;
+  const sliceEnd = (n < arr.length)
+    ? Math.floor(n)
+    : arr.length;
+
   return slice(arr, 0, sliceEnd);
 }
 

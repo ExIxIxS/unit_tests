@@ -20,20 +20,17 @@ function arrayFrom(item) {
     return [item];
   }
 
-  let resultArr;
-  if (isValIter || Object.hasOwn(item, 'length')) {
-    resultArr = Array.from(item);
-  }
-
   if (Array.isArray(item)) {
-    resultArr = item;
+    return item;
   }
 
-  if (itemType === 'object' && !resultArr)  {
-    resultArr = Object.values(item);
+  if (isValIter || Object.hasOwn(item, 'length')) {
+    return Array.from(item);
   }
 
-  return resultArr;
+  if (itemType === 'object')  {
+    return Object.values(item);
+  }
 }
 
 export default arrayFrom;

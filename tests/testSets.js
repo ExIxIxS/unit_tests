@@ -499,10 +499,6 @@ const filter = [
   },
   {
     coll: filterUsers,
-    fn: 'age'
-  },
-  {
-    coll: filterUsers,
     fn: undefined
   },
   {
@@ -512,10 +508,6 @@ const filter = [
   {
     coll: 'string',
     fn: (char) => char === 'r'
-  },
-  {
-    coll: 10,
-    fn: (num) => num === 10
   },
   {
     coll: {a: 2, b: 3, c: 'string'},
@@ -546,6 +538,10 @@ const filter = [
       {'10': 'Ten'}
     ],
     fn: 10
+  },
+  {
+    coll: 10,
+    fn: (num) => num === 10
   },
 ]
 
@@ -579,7 +575,8 @@ const find = [
   },
   {
     coll: 10,
-    fn: undefined
+    fn: undefined,
+    fromIndex: undefined
   },
   {
     coll: [10, 20, 30, 40, 50],
@@ -715,6 +712,60 @@ const slice = [
     arr: [1, 2, 3, 4, 5],
     start: -5,
     end: 3
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 10,
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 3,
+    end: -3
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 1.3,
+    end: -2.7
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 1.3,
+    end: -2.2
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: undefined,
+    end: undefined
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: '1',
+    end: undefined
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: '1',
+    end: '-2'
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: -10,
+    end: '-2'
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: '0',
+    end: -10
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: 1,
+    end: 1
+  },
+  {
+    arr: [1, 2, 3, 4, 5],
+    start: -3,
+    end: -3
   },
 ]
 
