@@ -144,18 +144,28 @@ describe('\nfind method', () => {
   })
 });
 
-
-/*
 describe('\ndropWhile method', () => {
   const methodName = 'dropWhile';
 
   testSets[methodName].forEach((testObj) => {
     const arr = testObj.arr;
-    const predicate = testObj.predicate;
+    const fn = testObj.predicate;
 
-    test(`.${methodName}() for predicate "${predicate}"`, () => {
-    expect(_my[methodName](arr, predicate)).toEqual(_[methodName](arr, predicate));
+    test(`.${methodName}() for predicate "${fn}"`, () => {
+    expect(_my[methodName](arr, fn)).toEqual(_[methodName](arr, fn));
     });
   })
 });
-*/
+
+describe('\npick method', () => {
+  const methodName = 'pick';
+
+  testSets[methodName].forEach((testObj) => {
+    const obj = testObj.obj;
+    const paths = testObj.paths;
+
+    test(`.${methodName}() for ${obj} with paths "${paths}"`, () => {
+    expect(_my[methodName](obj, paths)).toEqual(_[methodName](obj, paths));
+    });
+  })
+});

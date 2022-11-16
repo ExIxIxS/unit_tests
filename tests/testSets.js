@@ -310,6 +310,11 @@ const includes = [
     value: undefined,
     from: undefined
   },
+  {
+    coll: 3,
+    value: 3,
+    from: undefined
+  },
 ]
 
 const zip = [
@@ -658,7 +663,31 @@ const dropWhile = [
   },
   {
     arr: dropWhileUsers,
-    predicate: ['barney', 'fred', 'pebbles']
+    predicate: 'active'
+  },
+  {
+    arr: 'string',
+    predicate: (char) => char !== 'i'
+  },
+  {
+    arr: 'string',
+    predicate: 'i'
+  },
+  {
+    arr: dropWhileUsers,
+    predicate: ['length', 1]
+  },
+  {
+    arr: dropWhileUsers,
+    predicate: undefined
+  },
+  {
+    arr: 10,
+    predicate: (item) => item < 100
+  },
+  {
+    arr: undefined,
+    predicate: undefined
   },
 ]
 
@@ -769,6 +798,74 @@ const slice = [
   },
 ]
 
+const pick = [
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: ['a', 'c']
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: ['a', 'c', 'd']
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: 'c'
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: 'ac'
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: undefined
+  },
+  {
+    obj: undefined,
+    paths: ['a', 'c']
+  },
+  {
+    obj: undefined,
+    paths: undefined
+  },
+  {
+    obj: { 'a': 1, '10': '2', 'c': 3 },
+    paths: 10
+  },
+  {
+    obj: 'string',
+    paths: 2
+  },
+  {
+    obj: '2',
+    paths: '0'
+  },
+  {
+    obj: [1, 2, 3, 4, 5],
+    paths: 2
+  },
+  {
+    obj: [1, 2, 3, 4, 5],
+    paths: 'length'
+  },
+  {
+    obj: 'string',
+    paths: 'length'
+  },
+  {
+    obj: { 'a': 1, 'b': null, 'c': 12, 'null': 0 },
+    paths: ['a', 'b', 'c', null, 'd']
+  },
+  {
+    obj: { 'a': 1, 'b': null, 'c': 12, 'null': 0 },
+    paths: ['a', 'b', 'c', 'null', 'd']
+  },
+  {
+    obj: { 'a': 1, 'c': 12, 'null': 0, null: null},
+    paths: ['a', 'b', 'c', 'null', null]
+  },
+]
+
+
 
 export default {
   chunk,
@@ -781,5 +878,6 @@ export default {
   filter,
   find,
   dropWhile,
-  slice
+  slice,
+  pick
 }

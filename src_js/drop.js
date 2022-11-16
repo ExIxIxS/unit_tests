@@ -28,7 +28,9 @@ function drop(arr, n = 1) {
     return [];
   }
 
-  const sliceStart = (n > 0 && !isNaN(n)) ? Math.floor(n) : 0;
+  const sliceStart = (n > 0 && !isNaN(n))
+    ? Math.floor(n)
+    : 0;
 
   return slice(arr, sliceStart);
 }

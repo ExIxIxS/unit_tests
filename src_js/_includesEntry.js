@@ -17,7 +17,8 @@ function includesEntry(obj, key, value) {
     const entriesArr = Object.entries(obj);
     forEach(entriesArr, (subArr) => {
       const [subKey, subValue] = subArr;
-      if (key === subKey && isObjectEqual(value, subValue)) {
+      if (key === subKey
+        && isObjectEqual(value, subValue)) {
         result = true;
       }
     })

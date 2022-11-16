@@ -8,6 +8,7 @@ import zip from './src_js/zip.js';
 import map from './src_js/map.js';
 import filter from './src_js/filter.js';
 import find from './src_js/find.js';
+import pick from './src_js/pick.js';
 import slice from './src_js/_slice.js';
 
 export default {
@@ -21,5 +22,6 @@ export default {
   map,
   filter,
   find,
-  slice
+  slice,
+  pick
 };

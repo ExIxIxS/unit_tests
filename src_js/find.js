@@ -43,8 +43,8 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
  */
 
 function find(coll, fn, fromIndex = 0) {
-  const collType = typeof coll; //object
-  const fnType = (Array.isArray(fn)) ? 'array' : typeof fn; //undefined
+  const collType = typeof coll;
+  const fnType = (Array.isArray(fn)) ? 'array' : typeof fn;
 
   if (coll && (collType === "object" || isIterable(coll))) {
     const arr = arrayFrom(coll);
@@ -72,5 +72,28 @@ function find(coll, fn, fromIndex = 0) {
   }
 
 };
+
+function getPredicateFunction(predicate) {
+  const predicateType = (Array.isArray(predicate)) ? 'array' : typeof predicate;
+
+  switch(predicateType) {
+    case 'function':
+      return predicate;
+    case 'object':
+      return ((item) => includesEntries(item, predicate));
+    case 'array': {
+      const [key, value] = slice(predicate, 0, 2);
+      return ((item) => includesEntry(item, key, value));
+    }
+    default:{
+      if (fn) {
+        const key = predicate.toString();
+        return ((item) => includesTruthyEntry(item, key));
+      } else {
+        return null;
+      }
+    }
+  }
+}
 
 export default find;
