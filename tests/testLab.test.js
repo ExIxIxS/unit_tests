@@ -182,3 +182,15 @@ describe('\npickBy method', () => {
     });
   })
 });
+
+describe('\ntoPairs method', () => {
+  const methodName = 'toPairs';
+
+  testSets[methodName].forEach((testObj) => {
+    const obj = testObj.obj;
+
+    test(`.${methodName}() for ${obj}`, () => {
+    expect(_my[methodName](obj)).toEqual(_[methodName](obj));
+    });
+  })
+});

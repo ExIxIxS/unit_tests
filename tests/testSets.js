@@ -922,6 +922,59 @@ const pickBy = [
   },
 ]
 
+function FooToPairs() {
+  this.a = 1;
+  this.b = 2;
+}
+
+FooToPairs.prototype.c = 3;
+
+const maptoPairs = new Map();
+
+{
+const keyString = 'a string';
+const keyObj = {};
+const keyFunc = function() {};
+
+
+maptoPairs.set(keyString, "value associated with 'a string'");
+maptoPairs.set(keyObj, 'value associated with keyObj');
+maptoPairs.set(keyFunc, 'value associated with keyFunc');
+maptoPairs.set(NaN, 'not a number')
+maptoPairs.set(0, 'zero');
+maptoPairs.set(1, 'one');
+}
+
+const toPairs = [
+  {
+    obj: new FooToPairs,
+  },
+  {
+    obj: 'string',
+  },
+  {
+    obj: ['a', 'r', 'r', 'a', 'y'],
+  },
+  {
+    obj: ['array', ['of', ['arrays']]],
+  },
+  {
+    obj: 404,
+  },
+  {
+    obj: null,
+  },
+  {
+    obj: undefined,
+  },
+  {
+    obj: new Set('striiiiiing'),
+  },
+  {
+    obj: maptoPairs,
+  },
+]
+
 export default {
   chunk,
   compact,
@@ -935,5 +988,6 @@ export default {
   dropWhile,
   slice,
   pick,
-  pickBy
+  pickBy,
+  toPairs
 }
