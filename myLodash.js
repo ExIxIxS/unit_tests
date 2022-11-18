@@ -9,6 +9,7 @@ import map from './src_js/map.js';
 import filter from './src_js/filter.js';
 import find from './src_js/find.js';
 import pick from './src_js/pick.js';
+import pickBy from './src_js/pickBy.js';
 import slice from './src_js/_slice.js';
 
 export default {
@@ -23,5 +24,6 @@ export default {
   filter,
   find,
   slice,
-  pick
+  pick,
+  pickBy,
 };

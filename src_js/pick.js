@@ -1,7 +1,6 @@
 import filter from './filter.js';
-import arrayFrom from './_arrayFrom';
 import map from './map';
-import isIterable from './_isIterable';
+import getObject from './_getObject';
 
 /**
  * Creates an object composed of the picked `object` properties.
@@ -18,6 +17,7 @@ import isIterable from './_isIterable';
  * _.pick(object, ['a', 'c']);
  * // => { 'a': 1, 'c': 3 }
  */
+
 function pick(obj, paths) {
   if (!obj || paths === undefined) {
     return {};
@@ -30,16 +30,6 @@ function pick(obj, paths) {
   }
 
   return {};
-}
-
-function getObject(value) {
-  if (typeof value === 'object') {
-    return value;
-  }
-
-  if (isIterable(value)) {
-    return arrayFrom(value);
-  }
 }
 
 function basePick(obj, paths) {
