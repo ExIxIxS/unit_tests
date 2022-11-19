@@ -975,6 +975,76 @@ const toPairs = [
   },
 ]
 
+const omit = [
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: ['a', 'c']
+  },
+  {
+    obj: 'string',
+    paths: ['1', '3']
+  },
+  {
+    obj: 'string',
+    paths: '3'
+  },
+  {
+    obj: 'string',
+    paths: 3
+  },
+  {
+    obj: 'string',
+    paths: [0, '1', 2, '3', 4,]
+  },
+  {
+    obj: [0, '1', 2, '3', 4,],
+    paths: [0, '1']
+  },
+  {
+    obj: [0, '1', 2, '3', 4,],
+    paths: 0
+  },
+  {
+    obj: new Set('striiiiiing'),
+    paths: '0'
+  },
+  {
+    obj: new Set('striiiiiing'),
+  },
+  {
+    obj: undefined,
+    paths: ['a', 'c']
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: undefined
+  },
+  {
+    obj: 'string',
+    paths: undefined
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    paths: null
+  },
+  {
+    obj: [0, '1', 2, '3', 4,],
+    paths: undefined
+  },
+  {
+    obj: [0, '1', 2, '3', 4,],
+    paths: null
+  },
+  {
+    obj: undefined,
+    paths: undefined
+  },
+  {
+    obj: maptoPairs,
+    paths: NaN
+  },
+]
+
 export default {
   chunk,
   compact,
@@ -989,5 +1059,6 @@ export default {
   slice,
   pick,
   pickBy,
-  toPairs
+  toPairs,
+  omit,
 }

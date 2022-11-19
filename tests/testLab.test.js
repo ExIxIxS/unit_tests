@@ -194,3 +194,16 @@ describe('\ntoPairs method', () => {
     });
   })
 });
+
+describe('\nomit method', () => {
+  const methodName = 'omit';
+
+  testSets[methodName].forEach((testObj) => {
+    const obj = testObj.obj;
+    const paths = testObj.paths;
+
+    test(`.${methodName}() for ${obj} with paths ${paths}`, () => {
+    expect(_my[methodName](obj, paths)).toEqual(_[methodName](obj, paths));
+    });
+  })
+});

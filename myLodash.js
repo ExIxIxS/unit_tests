@@ -11,6 +11,7 @@ import find from './src_js/find.js';
 import pick from './src_js/pick.js';
 import pickBy from './src_js/pickBy.js';
 import toPairs from './src_js/toPairs.js';
+import omit from './src_js/omit.js';
 import slice from './src_js/_slice.js';
 
 export default {
@@ -27,5 +28,6 @@ export default {
   slice,
   pick,
   pickBy,
-  toPairs
+  toPairs,
+  omit
 };
