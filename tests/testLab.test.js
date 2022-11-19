@@ -220,3 +220,16 @@ describe('\nomitBy method', () => {
     });
   })
 });
+
+describe('\nmerge method', () => {
+  const methodName = 'merge';
+
+  testSets[methodName].forEach((testObj) => {
+    const obj = testObj.obj;
+    const src = testObj.sources;
+
+    test(`.${methodName}() for ${obj} with source "${src}"`, () => {
+      expect(_my[methodName](obj, src)).toEqual(_[methodName](obj, src));
+    });
+  })
+});

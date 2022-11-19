@@ -1096,6 +1096,49 @@ const omitBy = [
   },
 ]
 
+const merge = [
+  {
+    obj: { 'a': [{ 'b': 2 }, { 'd': 4 }] },
+    sources: { 'a': [{ 'c': 3 }, { 'e': 5 }] }
+  },
+  {
+    obj: { 'a': [[0], { 'b': 2 }, [2], { 'd': 2 }] },
+    sources: { 'a': [[1, 2], { 'c': 3 }, { 'e': 5 }, [5]] }
+  },
+  {
+    obj: { 'a': [{ 'b': 2 }], 'b': [{ 'a': 2 }] },
+    sources: { 'a': [{ 'c': 3 }, { 'e': 5 }],  'b': [{ 'c': 3 }, { 'e': 5 }]}
+  },
+  {
+    obj: { 'a': [{ 'b': [{ 'b': 2 }] }]},
+    sources: { 'a': [{ 'b': [{ 'b': 2 }, {'c': 3}] }]}
+  },
+  {
+    obj: { 'a1': [{ 'b2': [{ 'b3': 2 }] }], 'b1': 'string'},
+    sources: { 'a1': [{ 'b2': [{ 'b3': 2 }, {'c3': 3}] }], 'b1': 404}
+  },
+  {
+    obj: { 'a1': { 'a2': { 'a3': ['array', ['of', ['arrays']]] } } },
+    sources: { 'a1': { 'a2': { 'a3': ['array', 'wrong'] } } }
+  },
+  {
+    obj: { 'a1': [{ 'b2': [{ 'b3': 2 }] }], 'b1': 'string'},
+    sources: null
+  },
+  {
+    obj: null,
+    sources: null
+  },
+  {
+    obj: { 'a1': [{ 'b2': [{ 'b3': 2 }] }], 'b1': 'string'},
+    sources: undefined
+  },
+  {
+    obj: undefined,
+    sources: undefined
+  },
+]
+
 export default {
   chunk,
   compact,
@@ -1113,4 +1156,5 @@ export default {
   toPairs,
   omit,
   omitBy,
+  merge
 }

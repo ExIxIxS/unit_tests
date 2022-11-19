@@ -13,6 +13,7 @@ import pickBy from './src_js/pickBy.js';
 import toPairs from './src_js/toPairs.js';
 import omit from './src_js/omit.js';
 import omitBy from './src_js/omitBy.js';
+import merge from './src_js/merge.js';
 import slice from './src_js/_slice.js';
 
 export default {
@@ -32,4 +33,5 @@ export default {
   toPairs,
   omit,
   omitBy,
+  merge
 };
