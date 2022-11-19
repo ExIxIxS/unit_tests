@@ -207,3 +207,16 @@ describe('\nomit method', () => {
     });
   })
 });
+
+describe('\nomitBy method', () => {
+  const methodName = 'omitBy';
+
+  testSets[methodName].forEach((testObj) => {
+    const obj = testObj.obj;
+    const fn = testObj.predicate;
+
+    test(`.${methodName}() for ${obj} with predicate "${fn}"`, () => {
+      expect(_my[methodName](obj, fn)).toEqual(_[methodName](obj, fn));
+    });
+  })
+});

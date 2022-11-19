@@ -1045,6 +1045,57 @@ const omit = [
   },
 ]
 
+const omitBy = [
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    predicate: _.isNumber
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3, 'd': 'dd', '2': 22, '3': 6},
+    predicate: (value, key) => key + key === value
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    predicate: null
+  },
+  {
+    obj: [1, 2, 4, 6, 8],
+    predicate: (value, key) => key + 2 < value
+  },
+  {
+    obj: 102,
+    predicate: (value, key) => key === value
+  },
+  {
+    obj: undefined,
+    predicate: (value, key) => key + 2 < value
+  },
+  {
+    obj: undefined,
+    predicate: undefined
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    predicate: 'b'
+  },
+  {
+    obj: { 'a': 1, 'b': '2', 'c': 3 },
+    predicate: '2'
+  },
+  {
+    obj:'string',
+    predicate: (value, key) => value === 'i'
+  },
+  {
+    obj:'string',
+    predicate: (value, key) => key === '3'
+  },
+  {
+    obj: [1, 2, 4, 6, 8],
+    predicate: undefined
+  },
+]
+
 export default {
   chunk,
   compact,
@@ -1061,4 +1112,5 @@ export default {
   pickBy,
   toPairs,
   omit,
+  omitBy,
 }

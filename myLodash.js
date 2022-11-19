@@ -12,6 +12,7 @@ import pick from './src_js/pick.js';
 import pickBy from './src_js/pickBy.js';
 import toPairs from './src_js/toPairs.js';
 import omit from './src_js/omit.js';
+import omitBy from './src_js/omitBy.js';
 import slice from './src_js/_slice.js';
 
 export default {
@@ -29,5 +30,6 @@ export default {
   pick,
   pickBy,
   toPairs,
-  omit
+  omit,
+  omitBy,
 };
