@@ -1,7 +1,6 @@
-import getObject from './_getObject';
-import map from './map.js';
-import filter from './filter.js';
-import includes from './includes';
+import getObject from './_getObject.js';
+import baseOmit from './_baseOmit.js';
+
 /**
  * The opposite of `_.pick`; this method creates an object composed of the
  * own and inherited enumerable property paths of `object` that are not omitted.
@@ -31,24 +30,6 @@ function omit(obj, paths) {
   }
 
   return {};
-}
-
-function baseOmit(obj, paths) {
-  const entries = Object.entries(obj);
-
-  if (paths === undefined || paths === null) {
-    return Object.fromEntries(entries);
-  }
-
-  const pathsArr = (Array.isArray(paths)) ? paths : [paths];
-  const mappedPaths = map(pathsArr, (item) => item.toString());
-
-  const validEntries = filter(entries, (subArr) => {
-    const key = subArr[0];
-    return (!includes(mappedPaths, key));
-  });
-
-  return Object.fromEntries(validEntries);
 }
 
 export default omit;

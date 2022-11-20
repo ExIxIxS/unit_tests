@@ -1,6 +1,7 @@
 import mapArr from './_mapArr.js';
-import isIterable from './_isIterable.js';
 import arrayFrom from './_arrayFrom.js';
+import isCollValid from './_isCollValid.js';
+import getMapFunction from './_getMapFunction.js';
 
 /**
  * Creates an array of values by running each element in `collection` thru
@@ -10,7 +11,7 @@ import arrayFrom from './_arrayFrom.js';
  * @static
  * @category Collection
  * @param {Array|Object} coll The collection to iterate over.
- * @param {Function} fn The function or shorthand invoked per iteration.
+ * @param {Function|Array|string} predicate The function/shorthand invoked per iteration.
  * @returns {Array} Returns the new mapped array.
  * @example
  *
@@ -33,24 +34,15 @@ import arrayFrom from './_arrayFrom.js';
  * _.map(users, 'user');
  * // => ['barney', 'fred']
  */
-function map(coll, fn) {
-  const collType = typeof coll;
-  if (!coll || (collType !== "object" && !isIterable(coll))) {
+function map(coll, predicate) {
+  if (!isCollValid(coll)) {
     return [];
   }
 
   const arr = arrayFrom(coll);
+  const  mapFunction = getMapFunction(predicate);
 
-  if (typeof fn === 'function' || !fn) {
-    return mapArr(arr, fn)
-  } else {
-    return mapArr(arr, (item) => {
-      if (typeof item === 'object') {
-        return item[fn];
-      }
-    })
-  }
-
+  return mapArr(arr, mapFunction);
 }
 
 export default map;

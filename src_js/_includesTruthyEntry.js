@@ -11,6 +11,7 @@ import forEach from './_forEach.js';
 
 function includesTruthyEntry(obj, propName) {
   let result = false;
+
   if (typeof obj === 'object') {
     const keys = Object.keys(obj);
     forEach(keys, (key) => {
@@ -19,6 +20,7 @@ function includesTruthyEntry(obj, propName) {
       }
     });
   }
+
   return result;
 }
 

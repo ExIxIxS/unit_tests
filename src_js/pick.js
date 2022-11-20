@@ -1,6 +1,5 @@
-import filter from './filter.js';
-import map from './map';
 import getObject from './_getObject';
+import basePick from './_basePick';
 
 /**
  * Creates an object composed of the picked `object` properties.
@@ -30,20 +29,6 @@ function pick(obj, paths) {
   }
 
   return {};
-}
-
-function basePick(obj, paths) {
-  const pathsArr = (Array.isArray(paths)) ? paths : [paths.toString()];
-  const mappedEntries = map(pathsArr, (pathKey) => {
-    return [pathKey, obj[pathKey]];
-  });
-
-  const validEntries = filter(mappedEntries, (subArr) => {
-    const value = subArr[1];
-    return (value !== undefined);
-  });
-
-  return Object.fromEntries(validEntries);
 }
 
 export default pick;

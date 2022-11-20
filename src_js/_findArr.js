@@ -1,4 +1,5 @@
 import slice from './_slice.js';
+import baseFindArr from './_baseFindArr.js';
 
 /**
  * Iterates over elements of array, returning the first element
@@ -13,19 +14,11 @@ import slice from './_slice.js';
  */
 
 function findArr(arr, fn, fromIndex = 0) {
-  const isArray = Array.isArray(arr);
-  if (isArray && fn) {
-    const currentArr = (fromIndex) ? slice(arr, fromIndex) : arr;
-    let index = 0;
-    for (const item of currentArr) {
-      if (fn(item, index, currentArr)) {
-        return item;
-      }
-      index++;
+  if (Array.isArray(arr)) {
+    if (fn) {
+      return baseFindArr(arr, fn, fromIndex);
     }
-  }
 
-  if (isArray && !fn) {
     return slice(arr, fromIndex)[0];
   }
 }

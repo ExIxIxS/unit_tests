@@ -1,4 +1,5 @@
-import slice from './_slice.js';
+import isChunkSizeValid from './_isChunkSizeValid.js';
+import baseChunk from './_baseChunk.js';
 
 /**
  * Creates an array of elements split into groups the length of `size`.
@@ -24,28 +25,11 @@ function chunk(arr, size = 1) {
     return [];
   }
 
-  const arrLength = arr.length;
-  const minChunkSize = 1;
-  const intSize = Math.floor(+size);
-
-  if (intSize < minChunkSize
-    || !arrLength
-    || Number.isNaN(intSize)) {
+  if (!isChunkSizeValid(arr, size)) {
     return [];
   }
 
-  const chunkSize = (intSize <= arrLength) ? intSize: arrLength;
-  const resultLength = Math.ceil(arrLength / chunkSize);
-  const resultArr = Array(resultLength);
-  let sliceStart = 0;
-
-  for (let index = 0; index < resultLength; index++) {
-    const sliceEnd = sliceStart + chunkSize
-    resultArr[index] = slice(arr, sliceStart, sliceEnd);
-    sliceStart = sliceEnd;
-  }
-
-  return resultArr;
+  return baseChunk(arr, size);
 }
 
 export default chunk;

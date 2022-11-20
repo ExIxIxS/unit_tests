@@ -13,6 +13,7 @@ import forEach from './_forEach.js';
 
 function includesEntry(obj, key, value) {
   let result = false;
+
   if (typeof obj === 'object') {
     const entriesArr = Object.entries(obj);
     forEach(entriesArr, (subArr) => {

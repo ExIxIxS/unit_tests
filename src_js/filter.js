@@ -1,10 +1,7 @@
 import filterArr from './_filterArr.js';
 import isIterable from './_isIterable.js';
 import arrayFrom from './_arrayFrom.js';
-import slice from './_slice.js';
-import includesEntries from './_includesEntries.js';
-import includesEntry from './_includesEntry.js';
-import includesTruthyEntry from './_includesTruthyEntry.js';
+import getPredicateFunction from './_getPredicateFunction.js';
 
 /**
  * Iterates over elements of `collection`, returning a new array of all elements
@@ -14,7 +11,7 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
  * @static
  * @category Collection
  * @param {Iterable|Array|Object} coll The collection to iterate over.
- * @param {Function|Object|Array|string} [fn] The function/shorthand invoked per iteration.
+ * @param {Function|Object|Array|string} [predicate] The function/shorthand invoked per iteration.
  * @returns {Array} Returns the new filtered array.
  * @see _.reject
  * @example
@@ -40,32 +37,22 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
  * // => objects for ['barney']
  *
  */
-function filter(coll, fn) {
-  const collType = typeof coll;
-  if (!coll || (collType !== "object" && !isIterable(coll))) {
+function filter(coll, predicate) {
+  if (!isCollValid(coll)) {
     return [];
   }
 
   const arr = arrayFrom(coll);
-  const fnType = (Array.isArray(fn)) ? 'array' : typeof fn;
+  const filterFunction = getPredicateFunction(predicate);
 
-  if (fnType === 'function' || !fn) {
-    return filterArr(arr, fn)
-  }
+  return filterArr(arr, filterFunction);
+}
 
-  switch(fnType) {
-    case 'object': {
-      return filterArr(arr, (item) => includesEntries(item, fn));
-      }
-      case 'array': {
-        const [key, value] = slice(fn, 0, 2);
-        return filterArr(arr, (item) => includesEntry(item, key, value));
-      }
-      default:{
-        const key = fn.toString();
-        return filterArr(arr, (item) => includesTruthyEntry(item, key));
-      }
-    }
-  }
+function isCollValid(coll) {
+  return !(
+    (typeof coll !== "object" && !isIterable(coll))
+    || !coll
+  );
+}
 
 export default filter;

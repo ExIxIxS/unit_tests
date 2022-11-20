@@ -1,4 +1,4 @@
-import forEach from './_forEach.js';
+import baseFilterArr from './_baseFilterArr.js';
 
 /**
  * The implementation of array filter.
@@ -18,24 +18,7 @@ function filterArr(arr, fn) {
     return arr;
   }
 
-  let resultLength = 0;
-  forEach(arr, (item, index, arr) => {
-    if (fn(item, index, arr)) {
-      resultLength++;
-    }
-  });
-
-  const resultArr = Array(resultLength);
-  let resArrIndex = 0;
-
-  forEach(arr, (item, index, arr) => {
-    if (fn(item, index, arr)) {
-      resultArr[resArrIndex] = item;
-      resArrIndex++;
-    }
-  });
-
-  return resultArr;
+  return baseFilterArr(arr, fn);
 }
 
 export default filterArr;

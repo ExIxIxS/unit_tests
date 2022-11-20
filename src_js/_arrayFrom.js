@@ -9,15 +9,15 @@ import isIterable from './_isIterable.js';
  */
 
 function arrayFrom(item) {
-  if (!item) {
-    return [];
-  }
-
   const itemType = typeof item;
   const isValIter = isIterable(item);
 
   if (itemType !== 'object' && !isValIter) {
     return [item];
+  }
+
+  if (!item) {
+    return [];
   }
 
   if (Array.isArray(item)) {
@@ -28,9 +28,7 @@ function arrayFrom(item) {
     return Array.from(item);
   }
 
-  if (itemType === 'object')  {
-    return Object.values(item);
-  }
+  return Object.values(item);
 }
 
 export default arrayFrom;

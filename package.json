@@ -4,12 +4,15 @@
     "description": "https://ExIxIxS.github.io/",
     "private": true,
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "covered-test": "jest --collectCoverage"
     },
     "jest": {
         "transform": {
             "^.+\\.js?$": "babel-jest"
-        }
+        },
+        "coverageDirectory": "./coverage/",
+        "collectCoverageFrom": ["**/src_js/**"]
     },
     "repository": {
         "type": "git",

@@ -1,10 +1,8 @@
 import findArr from './_findArr.js';
-import isIterable from './_isIterable.js';
 import arrayFrom from './_arrayFrom.js';
-import slice from './_slice.js';
-import includesEntries from './_includesEntries.js';
-import includesEntry from './_includesEntry.js';
-import includesTruthyEntry from './_includesTruthyEntry.js';
+import getPredicateFunction from './_getPredicateFunction.js';
+import isCollValid from './_isCollValid.js';
+
 
 /**
  * Iterates over elements of `collection`, returning the first element
@@ -15,7 +13,7 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
 
  * @category Collection
  * @param {Array|Object} coll The collection to inspect.
- * @param {Function|Object|Array|string} fn The predicate function/shorthand.
+ * @param {Function|Object|Array|string} predicate The predicate function/shorthand.
  * @param {number} [fromIndex=0] The index to search from.
  * @returns {*} Returns the matched element, else `undefined`.
  * @example
@@ -42,58 +40,14 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
  * // => object for 'barney'
  */
 
-function find(coll, fn, fromIndex = 0) {
-  const collType = typeof coll;
-  const fnType = (Array.isArray(fn)) ? 'array' : typeof fn;
-
-  if (coll && (collType === "object" || isIterable(coll))) {
+function find(coll, predicate, fromIndex = 0) {
+  if (isCollValid(coll)) {
     const arr = arrayFrom(coll);
+    const findFunction = getPredicateFunction(predicate);
 
-    switch(fnType) {
-      case 'function': {
-        return findArr(arr, fn, fromIndex);
-      }
-      case 'object': {
-        return findArr(arr, (item) => includesEntries(item, fn), fromIndex);
-      }
-      case 'array': {
-        const [key, value] = slice(fn, 0, 2);
-        return findArr(arr, (item) => includesEntry(item, key, value), fromIndex);
-      }
-      default:{
-        if (fn) {
-          const key = fn.toString();
-          return findArr(arr, (item) => includesTruthyEntry(item, key), fromIndex);
-        } else {
-          return findArr(arr, null, fromIndex);
-        }
-      }
-    }
+    return findArr(arr, findFunction, fromIndex);
   }
 
 };
-
-function getPredicateFunction(predicate) {
-  const predicateType = (Array.isArray(predicate)) ? 'array' : typeof predicate;
-
-  switch(predicateType) {
-    case 'function':
-      return predicate;
-    case 'object':
-      return ((item) => includesEntries(item, predicate));
-    case 'array': {
-      const [key, value] = slice(predicate, 0, 2);
-      return ((item) => includesEntry(item, key, value));
-    }
-    default:{
-      if (fn) {
-        const key = predicate.toString();
-        return ((item) => includesTruthyEntry(item, key));
-      } else {
-        return null;
-      }
-    }
-  }
-}
 
 export default find;

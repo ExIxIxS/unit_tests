@@ -10,9 +10,6 @@ import forEach from './_forEach.js';
  */
 
 function mapArr(arr, fn) {
-  if (!Array.isArray(arr)) {
-    return [];
-  }
 
   if (!fn) {
     return arr;
@@ -21,7 +18,7 @@ function mapArr(arr, fn) {
   const resultArr = Array(arr.length);
 
   forEach(arr, (item, index, arr) => {
-      resultArr[index] = fn(item, index, arr);
+    resultArr[index] = fn(item, index, arr);
   });
 
   return resultArr;

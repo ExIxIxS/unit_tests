@@ -1,5 +1,5 @@
-import filter from './filter.js';
 import getObject from './_getObject';
+import basePickBy from './_basePickBy';
 
 /**
  * Creates an object composed of the `object` properties `predicate` returns
@@ -26,25 +26,6 @@ function pickBy(obj, predicate) {
 
   if (currentObj) {
     return basePickBy(currentObj, predicate);
-  }
-
-  return {};
-}
-
-function basePickBy(obj, fn) {
-  const entries = Object.entries(obj);
-
-  if (!fn) {
-    return Object.fromEntries(entries);
-  }
-
-  if (typeof fn === 'function') {
-    const validEntries = filter(entries, (subArr) => {
-      const [key, value] = subArr;
-      return (fn(value, key));
-    });
-
-    return Object.fromEntries(validEntries);
   }
 
   return {};

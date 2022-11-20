@@ -1,6 +1,5 @@
-import forEach from './_forEach.js';
 import filterArr from './_filterArr.js';
-import mapArr from './_mapArr.js';
+import baseZip from './_baseZip.js';
 
 /**
  * Creates an array of grouped elements, the first of which contains the
@@ -18,24 +17,13 @@ import mapArr from './_mapArr.js';
  */
 function zip(...arrays) {
   const arr = filterArr(arrays, (item) => Array.isArray(item));
-  const arrLength = arr.length;
 
-  if (!arrLength) {
+  if (!arr.length) {
     return [];
   }
 
-  const resultArrLength = Math.max(...mapArr(arr, (arrItem) => arrItem.length));
-  const resutlArr = Array(resultArrLength);
+  return baseZip(arr);
 
-  forEach(resutlArr, (resItem, resArrIndex) => {
-    const subArr = Array(arrLength);
-    forEach(subArr, (sumItem, subArrIndex) => {
-      subArr[subArrIndex] = arr[subArrIndex][resArrIndex]
-    });
-    resutlArr[resArrIndex] = subArr;
-  });
-
-  return resutlArr;
 };
 
 export default zip;

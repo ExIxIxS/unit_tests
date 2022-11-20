@@ -1,10 +1,7 @@
 import drop from './drop.js';
 import isIterable from './_isIterable.js';
 import arrayFrom from './_arrayFrom.js';
-import slice from './_slice.js';
-import includesEntries from './_includesEntries.js';
-import includesEntry from './_includesEntry.js';
-import includesTruthyEntry from './_includesTruthyEntry.js';
+import getPredicateFunction from './_getPredicateFunction.js';
 
 /**
  * Creates a slice of `array` excluding elements dropped from the beginning.
@@ -41,47 +38,35 @@ import includesTruthyEntry from './_includesTruthyEntry.js';
  */
 
 function dropWhile(coll, predicate) {
-  const collType = typeof coll;
-
-  if (!(coll && (collType === "object" || isIterable(coll)) && predicate)) {
-    return []
+  if (!isArgsValid(coll, predicate)) {
+      return []
   }
 
   const arr = arrayFrom(coll);
   const fn = getPredicateFunction(predicate);
+  const dropIndex = getDropIndex(arr, fn);
+
+  return drop(arr, dropIndex);
+}
+
+function isArgsValid(coll, predicate) {
+  return (coll
+    && predicate
+    && (typeof coll === "object" || isIterable(coll))
+  )
+}
+
+function getDropIndex(arr, fn) {
   const length = arr.length;
-  let dropIndex = 0;
   let index = 0;
+  let dropIndex = 0;
 
   while (fn(arr[index], index, arr) && index < length) {
     dropIndex++;
     index++;
   }
 
-  return drop(arr, dropIndex);
-}
-
-function getPredicateFunction(predicate) {
-  const predicateType = (Array.isArray(predicate)) ? 'array' : typeof predicate;
-
-  switch(predicateType) {
-    case 'function':
-      return predicate;
-    case 'object':
-      return ((item) => includesEntries(item, predicate));
-    case 'array': {
-      const [key, value] = slice(predicate, 0, 2);
-      return ((item) => includesEntry(item, key, value));
-    }
-    default:{
-      if (predicate) {
-        const key = predicate.toString();
-        return ((item) => includesTruthyEntry(item, key));
-      } else {
-        return null;
-      }
-    }
-  }
+  return dropIndex;
 }
 
 export default dropWhile;
