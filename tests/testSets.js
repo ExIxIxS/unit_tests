@@ -1267,11 +1267,4 @@ export default {
   omit,
   omitBy,
   merge,
-  slice,
-  arrayFrom,
-  filterArr,
-  findArr,
-  includesEntries,
-  includesEntry,
-  isObjectEqual,
 }
