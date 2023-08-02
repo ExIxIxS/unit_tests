@@ -28,7 +28,9 @@
  * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
  */
 function merge(obj, sources){
-  return (obj) ? Object.assign(obj, sources) : {};
+  return (obj)
+    ? Object.assign(obj, sources)
+    : {};
 }
 
 export default merge;

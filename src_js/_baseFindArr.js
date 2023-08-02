@@ -12,8 +12,11 @@ import slice from './_slice.js';
 
 
 function baseFindArr(arr, fn, fromIndex) {
-  const currentArr = (fromIndex) ? slice(arr, fromIndex) : arr;
-    let index = 0;
+  const currentArr = (fromIndex)
+    ? slice(arr, fromIndex)
+    : arr;
+
+  let index = 0;
     for (const item of currentArr) {
       if (fn(item, index, currentArr)) {
         return item;
