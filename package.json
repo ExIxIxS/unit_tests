@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "test": "jest",
-        "covered-test": "jest --collectCoverage"
+        "test:coverage": "jest --collectCoverage"
     },
     "jest": {
         "transform": {
